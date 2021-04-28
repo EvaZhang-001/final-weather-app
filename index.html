@@ -11,6 +11,7 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
@@ -19,17 +20,24 @@
         <div class="weather-app">
           <div class="row">
             <div class="col-6 general-view">
-              <h1>Bern</h1>
+              <h1 id="city">Bern</h1>
               <ul>
-                <li>Sat, April 24, 10:44AM</li>
-                <li>Humidity:70%, Wind speed:5 m/s</li>
+                <li id="time">Sat, April 24, 10:44AM</li>
+                <li>
+                  Humidity: <span id="humidity"> 70</span>%, Wind speed:<span
+                    id="wind"
+                  >
+                    5</span
+                  >
+                  m/s
+                </li>
               </ul>
             </div>
             <div class="col-6 icon-temperature">
               <img
                 src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
               />
-              <span class="temperature"> 5</span>
+              <span class="temperature" id="temperature"> 5</span>
               <span class="unit"> °C|°F </span>
             </div>
           </div>
