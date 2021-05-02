@@ -47,9 +47,14 @@ function showTemperature(response) {
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   let timeElement = document.querySelector("#time");
   timeElement.innerHTML = showTime(response.data.dt * 1000);
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
-
-let city = "Bern";
+let city = "bern";
 let apiKey = "68987c4f78ac703ea3b4c1f3b5c684ad";
 let unit = "metric";
 let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
