@@ -44,6 +44,8 @@ function showTemperature(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  let celsius = response.data.main.temp;
+  console.log(celsius);
   let timeElement = document.querySelector("#time");
   timeElement.innerHTML = showTime(response.data.dt * 1000);
   let iconElement = document.querySelector("#icon");
@@ -68,6 +70,8 @@ function handleSubmit(event) {
   let cityElement = document.querySelector("#city-input");
   search(cityElement.value);
 }
+
+search("Bern");
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);

@@ -26,6 +26,7 @@
                   placeholder="City"
                   class="form-control"
                   id="city-input"
+                  autocomplete="off"
                 />
               </div>
               <div class="col-6">
@@ -35,7 +36,7 @@
           </form>
           <div class="row">
             <div class="col-6 general-view">
-              <h1 id="city">Bern</h1>
+              <h1 id="city"></h1>
               <ul>
                 <li id="time">Sat, April 24, 10:44</li>
                 <li>
@@ -55,7 +56,11 @@
                 id="icon"
               />
               <span class="temperature" id="temperature"> 5</span>
-              <span class="unit"> °C|°F </span>
+              <span class="unit">
+                <a href="" class="celsius">°C</a>|<a href="" class="celsius"
+                  >°F</a
+                >
+              </span>
             </div>
           </div>
         </div>
