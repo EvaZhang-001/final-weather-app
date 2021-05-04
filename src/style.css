@@ -41,15 +41,20 @@ li {
 }
 .icon-temperature .temperature {
   margin-left: 10px;
-
   font-size: 80px;
   line-height: 1;
 }
 .icon-temperature .unit {
   font-size: 28px;
   line-height: 36px;
-
   position: relative;
   line-height: 1;
   top: -34px;
+}
+.unit a {
+  text-decoration: none;
+}
+
+.unit .inactive {
+  color: white;
 }

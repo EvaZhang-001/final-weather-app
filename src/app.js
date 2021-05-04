@@ -75,6 +75,10 @@ function showFahrenheit(event) {
   let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = fahrenheitTemperature;
+  let celsiusUnit = document.querySelector("#celsius-unit");
+  celsiusUnit.classList.romove("inactive");
+  let fahrenheitUnit = document.querySelector("#fahrenheit-unit");
+  fahrenheitUnit.classList.add("inactive");
 }
 
 let celsiusTemperature = null;
@@ -83,6 +87,10 @@ function showCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  let celsiusUnit = document.querySelector("#celsius-unit");
+  celsiusUnit.classList.add("inactive");
+  let fahrenheitUnit = document.querySelector("#fahrenheit-unit");
+  fahrenheitUnit.classList.remove("inactive");
 }
 
 search("Bern");
