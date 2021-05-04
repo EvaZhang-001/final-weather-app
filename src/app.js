@@ -44,8 +44,7 @@ function showTemperature(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  let celsius = response.data.main.temp;
-  console.log(celsius);
+  celsiusTemperature = response.data.main.temp;
   let timeElement = document.querySelector("#time");
   timeElement.innerHTML = showTime(response.data.dt * 1000);
   let iconElement = document.querySelector("#icon");
@@ -71,7 +70,28 @@ function handleSubmit(event) {
   search(cityElement.value);
 }
 
+function showFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = fahrenheitTemperature;
+}
+
+let celsiusTemperature = null;
+
+function showCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
 search("Bern");
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let fahrenheit = document.querySelector("#fahrenheit-unit");
+fahrenheit.addEventListener("click", showFahrenheit);
+
+let celsius = document.querySelector("#celsius-unit");
+celsius.addEventListener("click", showCelsius);
