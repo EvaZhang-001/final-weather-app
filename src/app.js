@@ -76,7 +76,7 @@ function showFahrenheit(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = fahrenheitTemperature;
   let celsiusUnit = document.querySelector("#celsius-unit");
-  celsiusUnit.classList.romove("inactive");
+  celsiusUnit.classList.remove("inactive");
   let fahrenheitUnit = document.querySelector("#fahrenheit-unit");
   fahrenheitUnit.classList.add("inactive");
 }
