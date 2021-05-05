@@ -93,7 +93,19 @@ function showCelsius(event) {
   fahrenheitUnit.classList.remove("inactive");
 }
 
-search("Bern");
+function showGeoLocation(response) {
+  let currentCity = response.data.address.city;
+  search(currentCity);
+}
+
+function handlePosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let geoLocationUrl = `https://us1.locationiq.com/v1/reverse.php?key=pk.8dab3fe952f4d3e9a0e95f2a89b718d2&lat=${latitude}&lon=${longitude}&format=json`;
+  axios.get(geoLocationUrl).then(showGeoLocation);
+}
+navigator.geolocation.getCurrentPosition(handlePosition);
+//search("Bern");
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
