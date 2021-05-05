@@ -105,6 +105,7 @@ function handlePosition(position) {
   axios.get(geoLocationUrl).then(showGeoLocation);
 }
 navigator.geolocation.getCurrentPosition(handlePosition);
+
 //search("Bern");
 
 let form = document.querySelector("#search-form");

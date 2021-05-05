@@ -58,3 +58,7 @@ li {
 .unit .inactive {
   color: white;
 }
+
+#city {
+  text-transform: capitalize;
+}
