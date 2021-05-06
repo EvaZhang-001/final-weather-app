@@ -37,6 +37,18 @@ function showTime(timestamp) {
   }
   return `${day}, ${month} ${date}, ${hour}:${minute}`;
 }
+
+function showForecast(response) {
+  console.log(response.data.daily);
+}
+
+function forecastAPI(response) {
+  let apiKey = "68987c4f78ac703ea3b4c1f3b5c684ad";
+  let unit = "metric";
+  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.lat}&lon=${response.lon}&appid=${apiKey}&units=${unit}`;
+  axios.get(url).then(showForecast);
+}
+
 function showTemperature(response) {
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = response.data.main.humidity;
@@ -55,7 +67,8 @@ function showTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
   let descriptionElement = document.querySelector("#weather-description");
   descriptionElement.innerHTML = response.data.weather[0].description;
-  console.log(response);
+  console.log(response.data.coord);
+  forecastAPI(response.data.coord);
 }
 
 function forecast() {
