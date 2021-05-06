@@ -58,6 +58,28 @@ function showTemperature(response) {
   console.log(response);
 }
 
+function forecast() {
+  let forecastDay = document.querySelector("#forecast-multidays");
+  forecastDay.innerHTML = "";
+  let multidays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+  multidays.forEach(function (day) {
+    forecastDay.innerHTML =
+      forecastDay.innerHTML +
+      `<div class="col-2 one-forecast-day" id="one-forecast-day">
+                <div class="weather-forecast-day">${day}</div>
+                <div class="weather-forecast-temperature">
+                  <span class="weather-forecast-temperature-min">10° </span>-
+                  <span class="weather-forecast-temperature-max"> 20°</span>
+                </div>
+
+                <img
+                  src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
+                  alt="partly_cloudy"
+                />
+                </div>`;
+  });
+}
+
 function search(city) {
   let apiKey = "68987c4f78ac703ea3b4c1f3b5c684ad";
   let unit = "metric";
@@ -110,6 +132,7 @@ function handlePosition(position) {
 navigator.geolocation.getCurrentPosition(handlePosition);
 
 //search("Bern");
+forecast();
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
