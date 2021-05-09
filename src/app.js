@@ -38,15 +38,11 @@ function showTime(timestamp) {
   return `${day}, ${month} ${date}, ${hour}:${minute}`;
 }
 
-function showForecast(response) {
-  console.log(response.data.daily);
-}
-
 function forecastAPI(response) {
   let apiKey = "68987c4f78ac703ea3b4c1f3b5c684ad";
   let unit = "metric";
   let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${response.lat}&lon=${response.lon}&appid=${apiKey}&units=${unit}`;
-  axios.get(url).then(showForecast);
+  axios.get(url).then(forecast);
 }
 
 function showTemperature(response) {
@@ -71,25 +67,43 @@ function showTemperature(response) {
   forecastAPI(response.data.coord);
 }
 
-function forecast() {
+function showEachForecastDay(timestamp) {
+  let day = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  eachDay = days[day.getDay()];
+  return eachDay;
+}
+
+function forecast(response) {
+  console.log(response.data.daily);
   let forecastDay = document.querySelector("#forecast-multidays");
   forecastDay.innerHTML = "";
-  let multidays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-  multidays.forEach(function (day) {
-    forecastDay.innerHTML =
-      forecastDay.innerHTML +
-      `<div class="col-2 one-forecast-day" id="one-forecast-day">
-                <div class="weather-forecast-day">${day}</div>
+  let eachForecastDay = response.data.daily;
+  console.log(eachForecastDay);
+  eachForecastDay.forEach(function (eachDay, index) {
+    if (index < 5) {
+      forecastDay.innerHTML += `<div class="col-sm one-forecast-day" id="one-forecast-day">
+                <div class="weather-forecast-day">${showEachForecastDay(
+                  eachDay.dt
+                )}</div>
                 <div class="weather-forecast-temperature">
-                  <span class="weather-forecast-temperature-min">10° </span>-
-                  <span class="weather-forecast-temperature-max"> 20°</span>
+                  <span class="weather-forecast-temperature-min">${Math.round(
+                    eachDay.temp.min
+                  )}° </span>-
+                  <span class="weather-forecast-temperature-max"> ${Math.round(
+                    eachDay.temp.max
+                  )}°</span>
                 </div>
+                
 
                 <img
-                  src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
-                  alt="partly_cloudy"
+                  src="http://openweathermap.org/img/wn/${
+                    eachDay.weather[0].icon
+                  }@2x.png"
+                  alt="${eachDay.weather[0].description}"
                 />
                 </div>`;
+    }
   });
 }
 
@@ -145,7 +159,7 @@ function handlePosition(position) {
 navigator.geolocation.getCurrentPosition(handlePosition);
 
 //search("Bern");
-forecast();
+//forecast();
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);

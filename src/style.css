@@ -62,6 +62,9 @@ li {
   text-align: center;
   margin-top: 10px;
 }
+.weather-forecast img {
+  width: 60px;
+}
 
 .one-forecast-day {
   border-radius: 16px;
